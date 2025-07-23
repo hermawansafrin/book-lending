@@ -19,24 +19,34 @@ return Application::configure(basePath: dirname(__DIR__))
         //
     })
     ->withExceptions(function (Exceptions $exceptions): void {
+
+        // Handle general server errors (500) for API (only not on debug mode)
+        if (! (config('app.debug'))) {
+            $exceptions->renderable(function (Throwable $e, $request) {
+                if ($request->expectsJson() || $request->is('api/*')) {
+                    return response()->json(ResponseUtil::makeError(__('messages.exception.server_error')), 500);
+                }
+            });
+        }
+
         // Handle authentication exceptions for API
         $exceptions->renderable(function (AuthenticationException $e, $request) {
             if ($request->expectsJson() || $request->is('api/*')) {
-                return response()->json(ResponseUtil::makeError('Unauthenticated.'), 401);
+                return response()->json(ResponseUtil::makeError(__('messages.auth.unauthenticated')), 401);
             }
         });
 
         // Handle 404 Not Found exceptions for API
         $exceptions->renderable(function (NotFoundHttpException $e, $request) {
             if ($request->expectsJson() || $request->is('api/*')) {
-                return response()->json(ResponseUtil::makeError('Endpoint not found.'), 404);
+                return response()->json(ResponseUtil::makeError(__('messages.exception.not_found')), 404);
             }
         });
 
         // Handle 405 Method Not Allowed exceptions for API
         $exceptions->renderable(function (MethodNotAllowedHttpException $e, $request) {
             if ($request->expectsJson() || $request->is('api/*')) {
-                return response()->json(ResponseUtil::makeError('Method not allowed.'), 405);
+                return response()->json(ResponseUtil::makeError(__('messages.exception.method_not_allowed')), 405);
             }
         });
     })->create();
