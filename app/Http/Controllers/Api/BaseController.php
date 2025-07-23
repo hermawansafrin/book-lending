@@ -3,13 +3,14 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Traits\ResponseTrait;
 
 /**
  * @OA\Info(
  *  version="1.0.0",
  *  title="Book Lending API's",
  *  description= "How to login:
- *   Login using the `/authentication/login` endpoint with your email and password.
+ *   Login using the `/login` endpoint with your email and password.
  *   Copy the token from the response, specifically from `data.token.value`.
  *   Click the Authorize button in the top right corner.
  *   Enter the token in the format: `Bearer <access_token>`.
@@ -20,7 +21,7 @@ use App\Http\Controllers\Controller;
  *
  *  @OA\Server(
  *   description="LIVE server",
- *   url="/api/v1/",
+ *   url="/api/",
  *  )
  * )
  *
@@ -33,5 +34,5 @@ use App\Http\Controllers\Controller;
  */
 class BaseController extends Controller
 {
-    //
+    use ResponseTrait;
 }

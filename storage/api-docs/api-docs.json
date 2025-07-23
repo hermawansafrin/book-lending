@@ -2,16 +2,40 @@
     "openapi": "3.0.0",
     "info": {
         "title": "Book Lending API's",
-        "description": "How to login:\n *   Login using the `/authentication/login` endpoint with your email and password.\n *   Copy the token from the response, specifically from `data.token.value`.\n *   Click the Authorize button in the top right corner.\n *   Enter the token in the format: `Bearer <access_token>`.\n *   Click the Authorize button.",
+        "description": "How to login:\n *   Login using the `/login` endpoint with your email and password.\n *   Copy the token from the response, specifically from `data.token.value`.\n *   Click the Authorize button in the top right corner.\n *   Enter the token in the format: `Bearer <access_token>`.\n *   Click the Authorize button.",
         "version": "1.0.0"
     },
     "servers": [
         {
-            "url": "/api/v1/",
+            "url": "/api/",
             "description": "LIVE server"
         }
     ],
     "paths": {
+        "/login": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "Login to system and return the token.",
+                "description": "Do action login for access the API's",
+                "operationId": "67d6d0fdd54fba132e1b6f55ca254183",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AuthUser"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        },
         "/test/check": {
             "get": {
                 "tags": [
@@ -44,6 +68,23 @@
         }
     },
     "components": {
+        "schemas": {
+            "AuthUser": {
+                "properties": {
+                    "email": {
+                        "type": "string",
+                        "format": "email",
+                        "example": "user1@mail.test"
+                    },
+                    "password": {
+                        "type": "string",
+                        "format": "password",
+                        "example": "123456"
+                    }
+                },
+                "type": "object"
+            }
+        },
         "securitySchemes": {
             "Bearer": {
                 "type": "apiKey",
@@ -53,6 +94,10 @@
         }
     },
     "tags": [
+        {
+            "name": "Authentication",
+            "description": "Authentication"
+        },
         {
             "name": "Example",
             "description": "Example"

@@ -20,7 +20,7 @@ class UserSeeder extends Seeder
                 if (DB::table('users')->count() < $maxUser) {
                     DB::table('users')->insert([
                         'name' => 'User '.$i,
-                        'email' => 'user'.$i.'@gmail.com',
+                        'email' => 'user'.$i.'@mail.test',
                         'password' => Hash::make('123456'),
                         'created_at' => now()->toDateTimeString(),
                         'updated_at' => now()->toDateTimeString(),
