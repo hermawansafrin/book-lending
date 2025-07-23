@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use Database\Seeders\BookSeeder;
 use Database\Seeders\UserSeeder;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Storage;
@@ -42,6 +43,8 @@ class FreshInstall extends Command
 
         $seeders = [
             UserSeeder::class, // for generate initial user datas
+            BookSeeder::class, // for generate initial book datas
+            // add here if there is anything else
         ];
 
         collect($seeders)->each(function ($seeder) {
