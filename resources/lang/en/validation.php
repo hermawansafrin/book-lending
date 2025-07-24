@@ -158,4 +158,9 @@ return [
     */
 
     'attributes' => [],
+
+    'input_must_be_text' => 'The :attribute must be a text.',
+    'string_must_at_least_one_uppercase' => 'The :attribute must have at least 1 uppercase letter.',
+    'string_must_have_one_number' => 'The :attribute must have at least 1 number.',
+    'string_must_at_least_one_special_char' => 'The :attribute must have at least 1 special character.',
 ];

@@ -6,6 +6,7 @@ return [
         'logout_success' => 'Logout berhasil',
         'unauthorized' => 'Tidak diizinkan',
         'unauthenticated' => 'Tidak terautentikasi',
+        'register_success' => 'Pendaftaran akun berhasil',
     ],
 
     'exception' => [

@@ -45,7 +45,7 @@ class ApiLoginRequest extends APIRequest
     {
 
         return [
-            'email' => $this->getEmailRules(),
+            'email' => $this->getEmailRules(isLogin: true),
             'password' => $this->getPasswordRules(),
         ];
     }

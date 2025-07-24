@@ -13,6 +13,15 @@ use Laravel\Sanctum\HasApiTokens;
  *  @OA\Property(property="email", type="string", format="email", example="user1@mail.test"),
  *  @OA\Property(property="password", type="string", format="password", example="123456"),
  * )
+ *
+ * @OA\Schema(
+ *  schema="RegisterUser",
+ *
+ *  @OA\Property(property="name", type="string", example="Your Name"),
+ *  @OA\Property(property="email", type="string", format="email", example="yourmail@mail.test"),
+ *  @OA\Property(property="password", type="string", format="password", example="123456"),
+ *  @OA\Property(property="password_confirmation", type="string", format="password", example="123456"),
+ * )
  */
 class User extends Authenticatable
 {

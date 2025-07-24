@@ -12,6 +12,30 @@
         }
     ],
     "paths": {
+        "/register": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "Register a new user",
+                "description": "Register a new user",
+                "operationId": "5d4fa5d5607ed675ba93907e1fc94534",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/RegisterUser"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        },
         "/login": {
             "post": {
                 "tags": [
@@ -77,6 +101,30 @@
                         "example": "user1@mail.test"
                     },
                     "password": {
+                        "type": "string",
+                        "format": "password",
+                        "example": "123456"
+                    }
+                },
+                "type": "object"
+            },
+            "RegisterUser": {
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "example": "Your Name"
+                    },
+                    "email": {
+                        "type": "string",
+                        "format": "email",
+                        "example": "yourmail@mail.test"
+                    },
+                    "password": {
+                        "type": "string",
+                        "format": "password",
+                        "example": "123456"
+                    },
+                    "password_confirmation": {
                         "type": "string",
                         "format": "password",
                         "example": "123456"

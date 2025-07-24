@@ -6,6 +6,7 @@ return [
         'logout_success' => 'Logout successful',
         'unauthorized' => 'Unauthorized',
         'unauthenticated' => 'Unauthenticated',
+        'register_success' => 'Register successful',
     ],
 
     'exception' => [

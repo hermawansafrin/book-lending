@@ -158,4 +158,8 @@ return [
     */
 
     'attributes' => [],
+    'input_must_be_text' => ':attribute harus berupa teks.',
+    'string_must_at_least_one_uppercase' => ':attribute harus memiliki minimal 1 huruf besar.',
+    'string_must_have_one_number' => ':attribute harus memiliki minimal 1 angka.',
+    'string_must_at_least_one_special_char' => ':attribute harus memiliki minimal 1 karakter spesial.',
 ];
