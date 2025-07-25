@@ -3,6 +3,7 @@
 namespace App\Repositories\Loan;
 
 use App\Models\Loan;
+use App\Repositories\Book\BookRepository;
 
 class Creator
 {
@@ -16,6 +17,9 @@ class Creator
         $loan->user_id = $input['user_id'];
         $loan->loan_date = now()->toDateString();
         $loan->save();
+
+        // after loan success, available on book must be decreased
+        app(BookRepository::class)->increaseOrDecreaseAvailableCopies($input['book_id'], false);
 
         return $loan->id;
     }

@@ -45,4 +45,13 @@ class BookRepository
     {
         return app(Getter::class)->getIsTitleAndAuthorExists($title, $author);
     }
+
+    /**
+     * Increase or decrease the available copies of a book by id
+     * its for after lend / return a book process has been finished
+     */
+    public function increaseOrDecreaseAvailableCopies(int $id, bool $isIncrease): void
+    {
+        app(Updater::class)->increaseOrDecreaseAvailableCopies($id, $isIncrease);
+    }
 }
