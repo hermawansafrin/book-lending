@@ -16,6 +16,14 @@ class AuthRepository
     }
 
     /**
+     * Get authenticated user login id
+     */
+    public function getUserId(): int
+    {
+        return Auth::user()->id;
+    }
+
+    /**
      * Do login action with matching between email and password.
      */
     public function doLogin(string $email, string $password): bool

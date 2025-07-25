@@ -31,6 +31,14 @@ class BookRepository
     }
 
     /**
+     * Check if the book has available copies
+     */
+    public function bookHasAvailableCopies(int $id): bool
+    {
+        return app(Getter::class)->bookHasAvailableCopies($id);
+    }
+
+    /**
      * Get if title and author exists
      */
     public function getIsTitleAndAuthorExists(string $title, string $author): bool

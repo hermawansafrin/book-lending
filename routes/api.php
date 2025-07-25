@@ -10,6 +10,10 @@ Route::group(['as' => 'api.'], function () {
 
     Route::group(['prefix' => 'books', 'as' => 'books.'], function () {
         Route::get('/', [BookController::class, 'pagination'])->name('pagination');
-        Route::post('/', [BookController::class, 'create'])->name('create')->middleware('auth:sanctum');
+
+        Route::group(['middleware' => 'auth:sanctum'], function () {
+            Route::post('/', [BookController::class, 'create'])->name('create');
+            Route::post('/{id}/lend', [BookController::class, 'lend'])->name('lend');
+        });
     });
 });

@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Requests\Book\ApiCreateRequest;
+use App\Http\Requests\Book\ApiLendRequest;
 use App\Http\Requests\Book\ApiPaginationRequest;
 use App\Repositories\Book\BookRepository;
+use App\Repositories\Loan\LoanRepository;
 use Illuminate\Support\Facades\DB;
 
 class BookController extends BaseController
@@ -12,12 +14,16 @@ class BookController extends BaseController
     /** repo for book repository */
     private BookRepository $repo;
 
+    /** repo for loan repository */
+    private LoanRepository $loanRepo;
+
     /**
      * Constructor
      */
-    public function __construct(BookRepository $repo)
+    public function __construct(BookRepository $repo, LoanRepository $loanRepo)
     {
         $this->repo = $repo;
+        $this->loanRepo = $loanRepo;
     }
 
     /**
@@ -120,6 +126,49 @@ class BookController extends BaseController
             return $this->sendResponse($data, __('messages.created'));
         } catch (\Exception $e) {
             DB::rollBack();
+        }
+    }
+
+    /**
+     * Lend a book for authenticated user
+     *
+     * @OA\Post(
+     *  path="/books/{id}/lend",
+     *  summary="Lend a book for authenticated user",
+     *  tags={"Books"},
+     *  description="Lend a book for authenticated user",
+     *  security={{"Bearer":{}}},
+     *
+     *  @OA\Parameter(
+     *      name="id",
+     *      in="path",
+     *      required=true,
+     *      description="book id",
+     *
+     *      @OA\Schema(type="integer")
+     *  ),
+     *
+     *  @OA\Response(
+     *      response=200,
+     *      description="successful operation",
+     *  )
+     * )
+     */
+    public function lend(ApiLendRequest $request)
+    {
+        $input = $request->validated();
+
+        DB::beginTransaction();
+        try {
+            $data = $this->loanRepo->lend($input);
+
+            DB::commit();
+
+            return $this->sendResponse($data, __('messages.book.lended'));
+        } catch (\Exception $e) {
+            DB::rollBack();
+
+            throw $e;
         }
     }
 }

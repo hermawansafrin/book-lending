@@ -160,6 +160,37 @@
                     }
                 ]
             }
+        },
+        "/books/{id}/lend": {
+            "post": {
+                "tags": [
+                    "Books"
+                ],
+                "summary": "Lend a book for authenticated user",
+                "description": "Lend a book for authenticated user",
+                "operationId": "024db6a511e04506eaa1190ec3009de7",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "book id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
         }
     },
     "components": {

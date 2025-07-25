@@ -20,4 +20,9 @@ return [
     'created' => 'Berhasil membuat data',
     'updated' => 'Berhasil mengubah data',
     'deleted' => 'Berhasil menghapus data',
+
+    'book' => [
+        'lended' => 'Peminjaman buku berhasil',
+        'returned' => 'Pengembalian buku berhasil',
+    ],
 ];

@@ -5,6 +5,20 @@ namespace App\Http\Requests\Book;
 trait RuleTrait
 {
     /**
+     * Get the validation rules that apply to the book_id field.
+     */
+    public function getBookIdRules(): array
+    {
+        return [
+            'bail',
+            'required',
+            'integer',
+            'numeric',
+            'exists:books,id',
+        ];
+    }
+
+    /**
      * Get the validation rules that apply to the title field.
      */
     public function getTitleRules(): array

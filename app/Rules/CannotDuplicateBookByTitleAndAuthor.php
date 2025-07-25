@@ -28,7 +28,7 @@ class CannotDuplicateBookByTitleAndAuthor implements ValidationRule
         $isExists = app(BookRepository::class)->getIsTitleAndAuthorExists($this->title, $this->author);
 
         if ($isExists) {
-            $fail(__('validation.book_title_and_author_already_exists'));
+            $fail(__('validation.book.book_title_and_author_already_exists'));
         }
     }
 }

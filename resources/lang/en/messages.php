@@ -20,4 +20,9 @@ return [
     'created' => 'Successfully created data',
     'updated' => 'Successfully updated data',
     'deleted' => 'Successfully deleted data',
+
+    'book' => [
+        'lended' => 'Book lending successful',
+        'returned' => 'Book returning successful',
+    ],
 ];

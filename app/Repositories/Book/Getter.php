@@ -45,6 +45,17 @@ class Getter
     }
 
     /**
+     * Check if the book has available copies
+     */
+    public function bookHasAvailableCopies(int $id): bool
+    {
+        // use query builder for speed check
+        $book = DB::table('books')->select(['available_copies'])->find($id);
+
+        return $book->available_copies > 0;
+    }
+
+    /**
      * Get if title and author exists
      */
     public function getIsTitleAndAuthorExists(string $title, string $author): bool

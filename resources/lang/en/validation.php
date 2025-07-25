@@ -163,5 +163,10 @@ return [
     'string_must_at_least_one_uppercase' => 'The :attribute must have at least 1 uppercase letter.',
     'string_must_have_one_number' => 'The :attribute must have at least 1 number.',
     'string_must_at_least_one_special_char' => 'The :attribute must have at least 1 special character.',
-    'book_title_and_author_already_exists' => 'The book title with author already exists.',
+
+    'book' => [
+        'already_borrowed' => 'You already borrowed this book',
+        'no_available_copies' => 'The book has no available copies',
+        'book_title_and_author_already_exists' => 'The book title with author already exists.',
+    ],
 ];
