@@ -23,16 +23,15 @@ class AuthController extends BaseController
     }
 
     /**
+     * Register a new user.
+     *
      * @OA\Post(
      *  path="/register",
      *  summary="Register a new user",
      *  tags={"Authentication"},
      *  description="Register a new user",
      *
-     *  @OA\RequestBody(
-     *
-     *      @OA\JsonContent(ref="#/components/schemas/RegisterUser")
-     *  ),
+     *  @OA\RequestBody(@OA\JsonContent(ref="#/components/schemas/RegisterUser")),
      *
      *  @OA\Response(
      *      response=200,
@@ -57,16 +56,15 @@ class AuthController extends BaseController
     }
 
     /**
+     * Login to system and return the token.
+     *
      * @OA\Post(
      *  path="/login",
      *  summary="Login to system and return the token.",
      *  tags={"Authentication"},
      *  description="Do action login for access the API's",
      *
-     *  @OA\RequestBody(
-     *
-     *      @OA\JsonContent(ref="#/components/schemas/AuthUser")
-     *  ),
+     *  @OA\RequestBody(@OA\JsonContent(ref="#/components/schemas/AuthUser")),
      *
      *  @OA\Response(
      *      response=200,

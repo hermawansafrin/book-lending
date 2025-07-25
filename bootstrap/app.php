@@ -4,6 +4,7 @@ use App\Helpers\ResponseUtil;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\HttpKernel\Exception\AuthenticationException;
 use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -40,6 +41,13 @@ return Application::configure(basePath: dirname(__DIR__))
         $exceptions->renderable(function (NotFoundHttpException $e, $request) {
             if ($request->expectsJson() || $request->is('api/*')) {
                 return response()->json(ResponseUtil::makeError(__('messages.exception.not_found')), 404);
+            }
+        });
+
+        // When action is not authorized
+        $exceptions->renderable(function (AccessDeniedHttpException $e, $request) {
+            if ($request->expectsJson() || $request->is('api/*')) {
+                return response()->json(ResponseUtil::makeError(__('messages.exception.unauthorized_action')), 403);
             }
         });
 

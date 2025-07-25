@@ -60,24 +60,95 @@
                 }
             }
         },
-        "/test/check": {
+        "/books": {
             "get": {
                 "tags": [
-                    "Example"
+                    "Books"
                 ],
-                "summary": "Check Summary",
-                "description": "Check Description",
-                "operationId": "a6b3266f7030ec2dac41538192a0bcb9",
+                "summary": "Get books with pagination",
+                "description": "Get books with pagination",
+                "operationId": "e7d6ea14835e1703a0d0c7ce68e8af6d",
                 "parameters": [
                     {
-                        "name": "search_values",
+                        "name": "per_page",
                         "in": "query",
+                        "description": "number of items per page",
                         "required": false,
                         "schema": {
-                            "type": "string"
+                            "type": "integer",
+                            "default": 15
+                        }
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "page number",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 1
+                        }
+                    },
+                    {
+                        "name": "search",
+                        "in": "query",
+                        "description": "search for title or author",
+                        "required": false,
+                        "schema": {
+                            "type": "sring"
+                        }
+                    },
+                    {
+                        "name": "sort_by",
+                        "in": "query",
+                        "description": "sort data by specific column (default by title)",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "title",
+                                "author",
+                                "available_copies",
+                                "created_at"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "order_by",
+                        "in": "query",
+                        "description": "sort order (default by asc)",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "asc",
+                                "desc"
+                            ]
                         }
                     }
                 ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Books"
+                ],
+                "summary": "Create a new book",
+                "description": "Create a new book",
+                "operationId": "fe4512256a41d7e8df654a7317ddf6ea",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreateBook"
+                            }
+                        }
+                    }
+                },
                 "responses": {
                     "200": {
                         "description": "successful operation"
@@ -93,6 +164,28 @@
     },
     "components": {
         "schemas": {
+            "CreateBook": {
+                "required": [
+                    "title",
+                    "author",
+                    "available_copies"
+                ],
+                "properties": {
+                    "title": {
+                        "type": "string",
+                        "example": "Some Book Title"
+                    },
+                    "author": {
+                        "type": "string",
+                        "example": "Some Author"
+                    },
+                    "available_copies": {
+                        "type": "integer",
+                        "example": 20
+                    }
+                },
+                "type": "object"
+            },
             "AuthUser": {
                 "properties": {
                     "email": {
@@ -147,8 +240,8 @@
             "description": "Authentication"
         },
         {
-            "name": "Example",
-            "description": "Example"
+            "name": "Books",
+            "description": "Books"
         }
     ]
 }

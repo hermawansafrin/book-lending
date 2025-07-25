@@ -13,6 +13,7 @@ return [
         'server_error' => 'Whoops.. something error here, please contact our customer service',
         'not_found' => 'Endpoint not found',
         'method_not_allowed' => 'Method not allowed',
+        'unauthorized_action' => 'This action is unauthorized',
     ],
 
     'retrieved' => 'Successfully retrieved data',

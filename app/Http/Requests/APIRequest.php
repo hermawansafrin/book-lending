@@ -10,6 +10,7 @@ use Illuminate\Validation\ValidationException;
 
 class APIRequest extends FormRequest
 {
+    use ApiRuleTrait;
     use ResponseTrait;
 
     protected $stopOnFirstFailure = true;

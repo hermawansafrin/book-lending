@@ -13,6 +13,7 @@ return [
         'server_error' => 'Whoops.. ada kesalahan di sini, silakan hubungi customer service kami',
         'not_found' => 'Endpoint tidak ditemukan',
         'method_not_allowed' => 'Metode tidak diizinkan',
+        'unauthorized_action' => 'Aksi ini tidak diizinkan',
     ],
 
     'retrieved' => 'Berhasil mengambil data',

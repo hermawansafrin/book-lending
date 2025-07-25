@@ -162,4 +162,5 @@ return [
     'string_must_at_least_one_uppercase' => ':attribute harus memiliki minimal 1 huruf besar.',
     'string_must_have_one_number' => ':attribute harus memiliki minimal 1 angka.',
     'string_must_at_least_one_special_char' => ':attribute harus memiliki minimal 1 karakter spesial.',
+    'book_title_and_author_already_exists' => 'Judul buku dengan nama pengarang sudah ada.',
 ];
