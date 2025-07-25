@@ -16,6 +16,12 @@ return [
         'unauthorized_action' => 'This action is unauthorized',
     ],
 
+    'api' => [
+        'success' => 'successfully send request to :host',
+        'bad_request' => 'bad request to :host',
+        'server_error' => 'failed to send request to :host',
+    ],
+
     'retrieved' => 'Successfully retrieved data',
     'created' => 'Successfully created data',
     'updated' => 'Successfully updated data',

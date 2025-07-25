@@ -64,6 +64,7 @@ class FreshInstall extends Command
         $this->comment('Making database fresh...');
         $this->callSilent('migrate:fresh');
         $this->info('Database made fresh successfully');
+        $this->newLine();
     }
 
     /**

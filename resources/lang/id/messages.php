@@ -16,6 +16,12 @@ return [
         'unauthorized_action' => 'Aksi ini tidak diizinkan',
     ],
 
+    'api' => [
+        'success' => 'Berhasil mengirimkan request ke :host',
+        'bad_request' => 'Permintaan tidak valid ke :host',
+        'server_error' => 'Gagal mengirimkan request ke :host',
+    ],
+
     'retrieved' => 'Berhasil mengambil data',
     'created' => 'Berhasil membuat data',
     'updated' => 'Berhasil mengubah data',
