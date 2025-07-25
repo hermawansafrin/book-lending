@@ -14,6 +14,7 @@ Route::group(['as' => 'api.'], function () {
         Route::group(['middleware' => 'auth:sanctum'], function () {
             Route::post('/', [BookController::class, 'create'])->name('create');
             Route::post('/{id}/lend', [BookController::class, 'lend'])->name('lend');
+            Route::post('/{id}/return', [BookController::class, 'return'])->name('return');
         });
     });
 });

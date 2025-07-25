@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Requests\Book\ApiCreateRequest;
 use App\Http\Requests\Book\ApiLendRequest;
 use App\Http\Requests\Book\ApiPaginationRequest;
+use App\Http\Requests\Book\ApiReturnRequest;
 use App\Repositories\Book\BookRepository;
 use App\Repositories\Loan\LoanRepository;
 use Illuminate\Support\Facades\DB;
@@ -167,6 +168,50 @@ class BookController extends BaseController
             DB::commit();
 
             return $this->sendResponse($data, __('messages.book.lended'));
+        } catch (\Exception $e) {
+            DB::rollBack();
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Return a book for authenticated user
+     *
+     * @OA\Post(
+     *  path="/books/{id}/return",
+     *  summary="Return a book for authenticated user",
+     *  tags={"Books"},
+     *  description="Return a book for authenticated user",
+     *  security={{"Bearer":{}}},
+     *
+     *  @OA\Parameter(
+     *      name="id",
+     *      in="path",
+     *      required=true,
+     *      description="book id",
+     *
+     *      @OA\Schema(type="integer")
+     *  ),
+     *
+     *  @OA\Response(
+     *      response=200,
+     *      description="successful operation",
+     *  )
+     * )
+     */
+    public function return(ApiReturnRequest $request)
+    {
+        $input = $request->all(); // use all() for get $id after query user and book id for on going loan
+        $validatedInput = $request->validated();
+
+        DB::beginTransaction();
+        try {
+            $data = $this->loanRepo->return($input['id'], $validatedInput);
+
+            DB::commit();
+
+            return $this->sendResponse($data, __('messages.book.returned'));
         } catch (\Exception $e) {
             DB::rollBack();
 

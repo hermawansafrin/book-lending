@@ -191,6 +191,37 @@
                     }
                 ]
             }
+        },
+        "/books/{id}/return": {
+            "post": {
+                "tags": [
+                    "Books"
+                ],
+                "summary": "Return a book for authenticated user",
+                "description": "Return a book for authenticated user",
+                "operationId": "6d1b69dd7a87bfcad5187f070a8f2cf7",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "book id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
         }
     },
     "components": {

@@ -13,6 +13,14 @@ class LoanRepository
     }
 
     /**
+     * Get the last on going loan id by book id and user id
+     */
+    public function getLastOnGoingLoanId(int $bookId, int $userId): int
+    {
+        return app(Getter::class)->getLastOnGoingLoanId($bookId, $userId);
+    }
+
+    /**
      * Lend a book to a user
      */
     public function lend(array $input): array
@@ -20,6 +28,16 @@ class LoanRepository
         $loanId = app(Creator::class)->create($input);
 
         return $this->findOne($loanId);
+    }
+
+    /**
+     * Return a book by loan id
+     */
+    public function return(int $id, array $input): array
+    {
+        app(Updater::class)->return($id, $input);
+
+        return $this->findOne($id);
     }
 
     /**
