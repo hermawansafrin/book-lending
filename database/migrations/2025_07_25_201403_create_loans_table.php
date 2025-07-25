@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('loans', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id');
-            $table->foreignId('book_id');
+            $table->foreignId('user_id')->index();
+            $table->foreignId('book_id')->index();
             $table->date('loan_date');
             $table->date('return_date')->nullable();
             $table->timestamps();
