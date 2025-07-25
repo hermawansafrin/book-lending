@@ -51,8 +51,9 @@ class AuthController extends BaseController
             return $this->sendResponse($data, __('messages.auth.register_success'));
         } catch (\Exception $e) {
             DB::rollBack();
-        }
 
+            throw $e;
+        }
     }
 
     /**

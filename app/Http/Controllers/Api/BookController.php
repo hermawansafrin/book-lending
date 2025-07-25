@@ -126,6 +126,8 @@ class BookController extends BaseController
             return $this->sendResponse($data, __('messages.created'));
         } catch (\Exception $e) {
             DB::rollBack();
+
+            throw $e;
         }
     }
 
