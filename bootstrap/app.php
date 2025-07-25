@@ -1,11 +1,12 @@
 <?php
 
 use App\Helpers\ResponseUtil;
+use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
-use Symfony\Component\HttpKernel\Exception\AuthenticationException;
+use Symfony\Component\HttpKernel\Exception\AuthenticationException as SymfonyAuthenticationException;
 use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
@@ -30,8 +31,15 @@ return Application::configure(basePath: dirname(__DIR__))
             });
         }
 
-        // Handle authentication exceptions for API
+        // Handle authentication exceptions for API (for auth:sanctum)
         $exceptions->renderable(function (AuthenticationException $e, $request) {
+            if ($request->expectsJson() || $request->is('api/*')) {
+                return response()->json(ResponseUtil::makeError(__('messages.auth.unauthenticated')), 401);
+            }
+        });
+
+        // Handle authentication exceptions for auth but return from symfony
+        $exceptions->renderable(function (SymfonyAuthenticationException $e, $request) {
             if ($request->expectsJson() || $request->is('api/*')) {
                 return response()->json(ResponseUtil::makeError(__('messages.auth.unauthenticated')), 401);
             }
