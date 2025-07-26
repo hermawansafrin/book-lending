@@ -17,7 +17,8 @@ class ApiCreateRequest extends APIRequest
      */
     public function authorize(): bool
     {
-        return app(AuthRepository::class)->isAdmin();
+        // return app(AuthRepository::class)->isAdmin(); // already defined on middleware (api.onlyAdmin)
+        return true;
     }
 
     /**

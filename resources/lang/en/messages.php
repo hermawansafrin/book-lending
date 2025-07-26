@@ -7,6 +7,7 @@ return [
         'unauthorized' => 'Unauthorized',
         'unauthenticated' => 'Unauthenticated',
         'register_success' => 'Register successful',
+        'only_admin_can_do_this_action' => 'Only admin can do this action',
     ],
 
     'exception' => [

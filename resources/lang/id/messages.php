@@ -7,6 +7,7 @@ return [
         'unauthorized' => 'Tidak diizinkan',
         'unauthenticated' => 'Tidak terautentikasi',
         'register_success' => 'Pendaftaran akun berhasil',
+        'only_admin_can_do_this_action' => 'Hanya admin yang dapat melakukan aksi ini',
     ],
 
     'exception' => [

@@ -12,7 +12,7 @@ Route::group(['as' => 'api.'], function () {
         Route::get('/', [BookController::class, 'pagination'])->name('pagination');
 
         Route::group(['middleware' => 'auth:sanctum'], function () {
-            Route::post('/', [BookController::class, 'create'])->name('create');
+            Route::post('/', [BookController::class, 'create'])->name('create')->middleware('api.onlyAdmin');
             Route::post('/{id}/lend', [BookController::class, 'lend'])->name('lend');
             Route::post('/{id}/return', [BookController::class, 'return'])->name('return');
         });
