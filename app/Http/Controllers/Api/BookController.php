@@ -97,14 +97,16 @@ class BookController extends BaseController
     }
 
     /**
-     * Create a new book
+     * Create a new book with 2 ways :
+     *
+     *      1. Create a new book with title, author, and available copies (isbn will nullable)
+     *      2. Create a new book with isbn (title, author will not required anymore)
      *
      * @OA\Post(
      *  path="/books",
      *  summary="Create a new book",
      *  tags={"Books"},
      *  security={{"Bearer":{}}},
-     *  description="Create a new book",
      *
      *  @OA\RequestBody(@OA\JsonContent(ref="#/components/schemas/CreateBook")),
      *

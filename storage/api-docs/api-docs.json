@@ -138,7 +138,7 @@
                     "Books"
                 ],
                 "summary": "Create a new book",
-                "description": "Create a new book",
+                "description": "Create a new book with 2 ways :\n\n     1. Create a new book with title, author, and available copies (isbn will nullable)\n     2. Create a new book with isbn (title, author will not required anymore)",
                 "operationId": "fe4512256a41d7e8df654a7317ddf6ea",
                 "requestBody": {
                     "content": {
@@ -244,6 +244,10 @@
                     "available_copies": {
                         "type": "integer",
                         "example": 20
+                    },
+                    "isbn": {
+                        "type": "string",
+                        "example": null
                     }
                 },
                 "type": "object"

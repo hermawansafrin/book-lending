@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Model;
  *  @OA\Property(property="title", type="string", example="Some Book Title"),
  *  @OA\Property(property="author", type="string", example="Some Author"),
  *  @OA\Property(property="available_copies", type="integer", example=20),
+ *  @OA\Property(property="isbn", type="string", example=null),
  * )
  */
 class Book extends Model

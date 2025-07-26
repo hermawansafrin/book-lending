@@ -169,5 +169,6 @@ return [
         'not_borrowed' => 'You have not borrowed this book',
         'no_available_copies' => 'The book has no available copies',
         'book_title_and_author_already_exists' => 'The book title with author already exists.',
+        'isbn_not_found' => 'The ISBN not found on open library API, please check the ISBN again.',
     ],
 ];

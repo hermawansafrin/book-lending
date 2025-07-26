@@ -168,5 +168,6 @@ return [
         'not_borrowed' => 'Anda belum meminjam buku ini',
         'no_available_copies' => 'Buku ini tidak tersedia',
         'book_title_and_author_already_exists' => 'Judul buku dengan nama pengarang sudah ada.',
+        'isbn_not_found' => 'ISBN tidak ditemukan di API open library, silakan cek ISBN kembali.',
     ],
 ];

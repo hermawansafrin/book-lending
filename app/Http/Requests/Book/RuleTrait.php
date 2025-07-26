@@ -9,13 +9,15 @@ trait RuleTrait
      */
     public function getBookIdRules(): array
     {
-        return [
+        $rules = [
             'bail',
             'required',
             'integer',
             'numeric',
             'exists:books,id',
         ];
+
+        return $rules;
     }
 
     /**
@@ -25,7 +27,7 @@ trait RuleTrait
     {
         return [
             'bail',
-            'required',
+            'required_without:isbn',
             'string',
             'min:3',
             'max: 500',
@@ -39,7 +41,7 @@ trait RuleTrait
     {
         return [
             'bail',
-            'required',
+            'required_without:isbn',
             'string',
             'min:3',
             'max:150',
@@ -57,6 +59,17 @@ trait RuleTrait
             'integer',
             'numeric',
             'min:0',
+        ];
+    }
+
+    /**
+     * Get the validation rules that apply to the isbn field.
+     */
+    public function getIsbnRules(): array
+    {
+        return [
+            'bail',
+            'required_without:title,author',
         ];
     }
 }
