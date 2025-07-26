@@ -153,6 +153,8 @@ Run the comprehensive test suite:
 php artisan test --testsuite=Feature
 ```
 
+![API Testing Demo](./vid-api-testing-1.gif)
+
 The project includes comprehensive **Feature Testing** that covers all system workflows:
 
 #### Authentication Testing (`tests/Feature/Authentication/`)
