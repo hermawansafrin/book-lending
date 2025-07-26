@@ -15,6 +15,17 @@ class UserSeeder extends Seeder
     {
         DB::beginTransaction();
         try {
+            // create admin user (assumption it is the user can do all of function library)
+            DB::table('users')->insert([
+                'name' => 'Admin',
+                'email' => 'admin@mail.test',
+                'password' => Hash::make('123456'),
+                'is_admin' => 1,
+                'created_at' => now()->toDateTimeString(),
+                'updated_at' => now()->toDateTimeString(),
+            ]);
+
+            // create users from registration (assumption it is the member of library)
             $maxUser = 3;
             for ($i = 1; $i <= 3; $i++) { // every seed run, expected run 3 loop user but with max 3 users on tables
                 if (DB::table('users')->count() < $maxUser) {
@@ -22,6 +33,7 @@ class UserSeeder extends Seeder
                         'name' => 'User '.$i,
                         'email' => 'user'.$i.'@mail.test',
                         'password' => Hash::make('123456'),
+                        'is_admin' => 0,
                         'created_at' => now()->toDateTimeString(),
                         'updated_at' => now()->toDateTimeString(),
                     ]);

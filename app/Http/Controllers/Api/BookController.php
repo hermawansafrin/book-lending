@@ -97,10 +97,12 @@ class BookController extends BaseController
     }
 
     /**
+     * Only user as admin can create a new book
+     *
      * Create a new book with 2 ways :
      *
      *      1. Create a new book with title, author, and available copies (isbn will nullable)
-     *      2. Create a new book with isbn (title, author will not required anymore)
+     *      2. Create a new book with isbn (title, author will not required anymore. will automatically from isbn response data open library)
      *
      * @OA\Post(
      *  path="/books",

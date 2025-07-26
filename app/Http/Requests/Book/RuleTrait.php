@@ -70,6 +70,8 @@ trait RuleTrait
         return [
             'bail',
             'required_without:title,author',
+            'string',
+            'max:18',
         ];
     }
 }

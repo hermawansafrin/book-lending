@@ -24,6 +24,16 @@ class AuthRepository
     }
 
     /**
+     * Check if the user is admin.
+     */
+    public function isAdmin(): bool
+    {
+        $isAdmin = Auth::user()->is_admin ?? false;
+
+        return (bool) $isAdmin;
+    }
+
+    /**
      * Do login action with matching between email and password.
      */
     public function doLogin(string $email, string $password): bool

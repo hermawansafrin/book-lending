@@ -138,7 +138,7 @@
                     "Books"
                 ],
                 "summary": "Create a new book",
-                "description": "Create a new book with 2 ways :\n\n     1. Create a new book with title, author, and available copies (isbn will nullable)\n     2. Create a new book with isbn (title, author will not required anymore)",
+                "description": "Only user as admin can create a new book\n\nCreate a new book with 2 ways :\n\n     1. Create a new book with title, author, and available copies (isbn will nullable)\n     2. Create a new book with isbn (title, author will not required anymore. will automatically from isbn response data open library)",
                 "operationId": "fe4512256a41d7e8df654a7317ddf6ea",
                 "requestBody": {
                     "content": {
@@ -257,7 +257,7 @@
                     "email": {
                         "type": "string",
                         "format": "email",
-                        "example": "user1@mail.test"
+                        "example": "admin@mail.test"
                     },
                     "password": {
                         "type": "string",
