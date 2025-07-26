@@ -1,0 +1,9 @@
+{
+    "editor.formatOnSave": true,
+    "editor.formatOnSaveMode": "file",
+    "[php]": {
+        "editor.defaultFormatter": "open-southeners.laravel-pint" // make sure install laravel pint on your vscode
+    },
+    "laravel-pint.enable": true // enable laravel pint
+
+}

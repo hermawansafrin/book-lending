@@ -65,7 +65,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'Asia/Makassar', // set the timezone to makassar (UTC+8)
 
     /*
     |--------------------------------------------------------------------------
