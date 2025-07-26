@@ -1,3 +1,5 @@
+![API Documentation](./img-api-doc-1.png)
+
 # Book Lending System API
 
 A comprehensive **Book Lending System** built with Laravel 12 and PHP 8.4, featuring REST API architecture with Redis-based concurrency control and extensive testing coverage.
@@ -83,7 +85,7 @@ composer install
    REDIS_PORT=6379
    
    # Cache Driver (Use Redis for production)
-   CACHE_DRIVER=redis
+   CACHE_STORE=redis
    ```
 
 4. **Generate application key:**
@@ -123,6 +125,8 @@ php artisan serve
 
 ## API Documentation
 
+![API Documentation Interface](./img-api-doc-2.png)
+
 **Swagger OpenAPI Integration** provides comprehensive API documentation with interactive testing capabilities:
 
 **Access:** `http://your-domain/api/documentation`
@@ -137,6 +141,11 @@ php artisan serve
 This interactive documentation eliminates the need for separate API testing tools and provides developers with immediate access to test functionality.
 
 ## Testing & Test Coverage
+
+**Database Configuration for Testing:**
+- Ensure you have a dedicated test database configured in `phpunit.xml` (example: `book_lending_test`)
+- Tests use MySQL database as configured in `.env.testing` for all test scenarios
+- Database configuration should match your testing environment setup
 
 Run the comprehensive test suite:
 
