@@ -162,6 +162,7 @@ return [
     'string_must_at_least_one_uppercase' => ':attribute harus memiliki minimal 1 huruf besar.',
     'string_must_have_one_number' => ':attribute harus memiliki minimal 1 angka.',
     'string_must_at_least_one_special_char' => ':attribute harus memiliki minimal 1 karakter spesial.',
+    'user_already_as_admin' => 'Pengguna ini sudah menjadi admin.',
 
     'book' => [
         'already_borrowed' => 'Anda sudah meminjam buku ini',

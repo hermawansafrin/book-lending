@@ -27,7 +27,7 @@ class AuthController extends BaseController
      *
      * @OA\Post(
      *  path="/register",
-     *  summary="Register a new user",
+     *  summary="Register a new user (as a member)",
      *  tags={"Authentication"},
      *  description="Register a new user",
      *

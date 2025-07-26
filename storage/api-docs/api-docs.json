@@ -17,7 +17,7 @@
                 "tags": [
                     "Authentication"
                 ],
-                "summary": "Register a new user",
+                "summary": "Register a new user (as a member)",
                 "description": "Register a new user",
                 "operationId": "5d4fa5d5607ed675ba93907e1fc94534",
                 "requestBody": {
@@ -222,6 +222,79 @@
                     }
                 ]
             }
+        },
+        "/users": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Get users with pagination",
+                "description": "Get users with pagination",
+                "operationId": "d2fc44819a1a1ec5127e3ec9de4e5e08",
+                "parameters": [
+                    {
+                        "name": "per_page",
+                        "in": "query",
+                        "description": "number of items per page",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 15
+                        }
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "page number",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 1
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        },
+        "/users/{id}/make-admin": {
+            "post": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Make user as admin",
+                "description": "Make user as admin",
+                "operationId": "f58f6a258c471d213128fdc33682a839",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "user id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
         }
     },
     "components": {
@@ -308,6 +381,10 @@
         {
             "name": "Books",
             "description": "Books"
+        },
+        {
+            "name": "Users",
+            "description": "Users"
         }
     ]
 }
