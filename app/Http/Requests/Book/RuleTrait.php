@@ -30,7 +30,7 @@ trait RuleTrait
             'required_without:isbn',
             'string',
             'min:3',
-            'max: 500',
+            'max:500',
         ];
     }
 
@@ -41,6 +41,7 @@ trait RuleTrait
     {
         return [
             'bail',
+            'nullable',
             'required_without:isbn',
             'string',
             'min:3',
@@ -55,6 +56,7 @@ trait RuleTrait
     {
         return [
             'bail',
+            'nullable',
             'required',
             'integer',
             'numeric',
@@ -69,6 +71,7 @@ trait RuleTrait
     {
         return [
             'bail',
+            'nullable',
             'required_without:title,author',
             'string',
             'max:18',

@@ -18,7 +18,7 @@ trait ApiRuleTrait
             'integer',
             'numeric',
             'min:1',
-            'max: 100',
+            'max:100',
         ];
     }
 
@@ -45,7 +45,7 @@ trait ApiRuleTrait
             'bail',
             'nullable',
             'string',
-            'max: 255',
+            'max:255',
         ];
     }
 

@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\DB;
 
 class BookSeeder extends Seeder
 {
+    public const BOOKS_COUNT = 5; // only default for seeder
+
     /**
      * Run the database seeds.
      */

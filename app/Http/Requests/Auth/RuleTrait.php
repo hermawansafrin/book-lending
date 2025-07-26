@@ -37,7 +37,7 @@ trait RuleTrait
             'bail',
             'required',
             'min:6',
-            'max: 16',
+            'max:16',
         ];
     }
 
