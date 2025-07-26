@@ -1,61 +1,203 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Book Lending System API
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A comprehensive **Book Lending System** built with Laravel 12 and PHP 8.4, featuring REST API architecture with Redis-based concurrency control and extensive testing coverage.
 
-## About Laravel
+> **Note:** This project also serves as a technical demonstration for Laravel backend developer assessment, showcasing modern PHP development practices.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## About This Project
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+This system is a backend designed to accommodate book lending operations. The system supports three distinct user access scenarios:
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### User Access Levels
 
-## Learning Laravel
+* **Admin** - Full system access including book management, user administration, and complete system control
+* **Member User** - Registered users who can access lending and return operations for books
+* **Public** - Read-only access to view available books in the library
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Key Features
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+* **Intelligent Book Creation** - When adding books with ISBN, automatically fetches title and author data from Open Library API
+* **Role-Based Access Control** - Three-tier permission system ensuring appropriate access levels
+* **Concurrency Control** - Redis atomic locking prevents race conditions during concurrent operations
+* **Interactive API Documentation** - Swagger OpenAPI provides comprehensive documentation with direct endpoint testing from the UI
+* **Developer-Friendly Setup** - Single command initialization for easy project setup and consistent development environment across teams
+* **Comprehensive Testing** - Complete feature test suite covering all user scenarios and workflows
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Architecture & Design Pattern
 
-## Laravel Sponsors
+**MVC with Repository Pattern** implementation featuring:
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+* **Repository Pattern** - Separate Creator, Getter, and Updater classes for organized business logic
+* **Thin Controllers** - HTTP concerns only, business logic in repositories
+* **Atomic Operations** - Redis locking ensures data integrity during concurrent operations
+* **Comprehensive Validation** - Custom rules prevent duplicate lending and ensure data consistency
 
-### Premium Partners
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
 
-## Contributing
+## Author
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+**Hermawan Safrin**
 
-## Code of Conduct
+* Email: hermawansafrin19@gmail.com
+* GitHub: @hermawansafrin
+* LinkedIn: Hermawan Safrin
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## Prerequisites
 
-## Security Vulnerabilities
+Before you begin, ensure you have the following installed on your local machine:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+* **PHP 8.4 or higher**
+* **MySQL 8.0 or higher**
+* **Redis Server** (for atomic locking and caching)
+* **Composer** (PHP package manager)
+
+## Installation
+
+1. **Clone the repository:**
+
+```bash
+git clone https://github.com/hermawansafrin/book-lending.git
+cd book-lending
+```
+
+2. **Install PHP dependencies:**
+
+```bash
+composer install
+```
+
+3. **Configure your environment:**
+   * Copy `.env.example` to `.env`
+   * Update the following in your `.env` file:
+   ```env
+   DB_CONNECTION=mysql
+   DB_HOST=127.0.0.1
+   DB_PORT=3306
+   DB_DATABASE=your_database_name
+   DB_USERNAME=your_database_username
+   DB_PASSWORD=your_database_password
+   
+   # Redis Configuration (Required for atomic locking)
+   REDIS_HOST=127.0.0.1
+   REDIS_PASSWORD=null
+   REDIS_PORT=6379
+   
+   # Cache Driver (Use Redis for production)
+   CACHE_DRIVER=redis
+   ```
+
+4. **Generate application key:**
+
+```bash
+php artisan key:generate
+```
+
+5. **Initialize database with sample data:**
+
+```bash
+php artisan app:fresh-install
+```
+
+This command provides easy setup for initial project data, ensuring consistent development environment across team members.
+
+## Technology Stack
+
+* **Laravel 12 + PHP 8.4** - Latest framework with enhanced performance and modern language features
+* **Redis** - Atomic locking for concurrency control and caching
+* **Laravel Sanctum** - Token-based API authentication with role-based authorization
+* **Swagger OpenAPI** - Interactive documentation with endpoint testing
+* **MySQL** - Primary database with optimized queries
+
+## Running the Application
+
+You have multiple options to run the application:
+
+1. **Using Laravel's built-in server:**
+
+```bash
+php artisan serve
+```
+
+2. **Using your local domain** (if configured):
+   * Access the application through your configured local domain
+
+## API Documentation
+
+**Swagger OpenAPI Integration** provides comprehensive API documentation with interactive testing capabilities:
+
+**Access:** `http://your-domain/api/documentation`
+
+**Features:**
+* **Complete API Reference** - Detailed documentation for all endpoints with descriptions and parameters
+* **Direct Endpoint Testing** - Test API calls directly from the UI without external tools
+* **Authentication Integration** - Login and test protected endpoints seamlessly
+* **Request/Response Examples** - Live examples with sample data for easy understanding
+* **Role-Based Testing** - Test different user access levels (Admin, Member, Public) from the interface
+
+This interactive documentation eliminates the need for separate API testing tools and provides developers with immediate access to test functionality.
+
+## Testing & Test Coverage
+
+Run the comprehensive test suite:
+
+```bash
+php artisan test --testsuite=Feature
+```
+
+The project includes comprehensive **Feature Testing** that covers all system workflows:
+
+#### Authentication Testing (`tests/Feature/Authentication/`)
+- **User Registration** - Complete user registration flow with validation testing
+- **User Login** - Authentication process with token generation and validation
+- **Registration Validation** - Comprehensive input validation for user registration
+- **Login Validation** - Authentication request validation and error handling
+
+#### Book Management Testing (`tests/Feature/Book/`)
+- **Book Creation** - Adding new books to the system (Admin functionality)
+- **Book Creation Validation** - Input validation for book creation requests
+- **Book Listing** - Retrieving books with pagination, search, and sorting
+- **Book List Validation** - Query parameter validation for book listing
+- **Book Lending** - Complete book lending workflow with availability checks
+- **Book Lending Validation** - Validation for lending requests and business rules
+- **Book Return** - Book return process with availability updates
+- **Book Return Validation** - Return request validation and state checking
+
+#### User Management Testing (`tests/Feature/User/`)
+- **User Listing** - Admin functionality to view all users with pagination
+- **User List Validation** - Query parameter validation for user listing
+- **Admin Promotion** - Promoting users to admin status
+- **Admin Promotion Validation** - Validation for admin promotion requests
+
+## Testing Accounts
+
+The following accounts are available for testing purposes:
+
+1. **Administrator Account:**
+   * Email: `admin@mail.test`
+   * Password: `123456`
+   * Permissions: Full system access, book management, user administration
+
+2. **Regular User Account:**
+   * Email: `user@mail.test`
+   * Password: `123456`
+   * Permissions: Book lending and returning operations
+
+## API Endpoints Overview
+
+### Authentication
+- `POST /api/register` - User registration
+- `POST /api/login` - User authentication
+
+### Books
+- `GET /api/books` - List books with pagination and search
+- `POST /api/books` - Create new book (Admin only)
+- `POST /api/books/{id}/lend` - Lend a book
+- `POST /api/books/{id}/return` - Return a book
+
+### Users
+- `GET /api/users` - List users (Admin only)
+- `POST /api/users/{id}/make-admin` - Promote user to admin (Admin only)
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+This project is open-sourced software licensed under the MIT license.
