@@ -121,7 +121,12 @@ php artisan serve
 ```
 
 2. **Using your local domain** (if configured):
-   * Access the application through your configured local domain
+   * For Laravel Valet users, you can set up a local domain:
+   ```bash
+   valet link book-lending && valet secure book-lending
+   ```
+   * Then access the application at: `https://book-lending.test`
+   * Or access the application through any other configured local domain
 
 ## API Documentation
 
