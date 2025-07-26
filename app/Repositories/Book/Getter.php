@@ -3,6 +3,7 @@
 namespace App\Repositories\Book;
 
 use App\Models\Book;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 
 class Getter
@@ -49,10 +50,19 @@ class Getter
      */
     public function bookHasAvailableCopies(int $id): bool
     {
-        // use query builder for speed check
-        $book = DB::table('books')->select(['available_copies'])->find($id);
+        // use atomic lock to prevent race condition when checking available copies
+        $lock = Cache::lock('book-'.$id.'-available-check', config('values.atomic_lock.default_timeout'));
 
-        return $book->available_copies > 0;
+        try {
+            $lock->block(config('values.atomic_lock.default_block_timeout'));
+
+            // use query builder for speed check
+            $book = DB::table('books')->select(['available_copies'])->find($id);
+
+            return $book->available_copies > 0;
+        } finally {
+            $lock->release();
+        }
     }
 
     /**
